@@ -1,0 +1,41 @@
+//INPUT: primary ray
+//DEPENDENCIES: queue, glm
+
+struct RayInfo{
+	int depth;
+	glm::vec3 kd;
+	glm::vec3 ks;
+	glm::vec3 intNormal;
+	glm::vec3 intPosition;
+	//incident ray direction needed?
+};
+
+std::queue<RayInfo> rayQueue;
+//intersection objects' kd and ks cofficients
+glm:vec3 kd = sphere.kd; //unsure how to deal with this ref
+glm::vec3 ks = sphere.ks;
+
+RayQueue pimaryRayInfo = {0, kd, ks, normal, intersectionPoint};
+
+rayQueue.push(primaryRayInfo);
+
+while(!rayQueue.empty()){
+RayInfo current = rayQueue.front();
+rayQueue.pop();
+pixelIntensity += current.kd * std::max(glm::dot(current.intNormal, lsDir), 0.0f);
+if(current.depth == 1){ //max bounce limit = 1
+if(current.kd < 0.0001) {}
+} else {
+Ray ray = glm::reflect(Incident, current.intNormal);
+//<- calculate intersection
+if(intersection){
+	RayInfo rInfo = {???};
+	rayQueue.push(rInfo);
+} else {
+	pixelIntensity += glm::vec3(0.0f, 0.0f, 0.0f);
+}
+}
+
+}
+
+//OUTPUT: intensity values for r g and b
